@@ -68,7 +68,7 @@ case "${unameOut}" in
   Linux*)
     echo "Running on ${OS_NAME}"
     export CPU_TARGET=avx
-    GCC_VERSION=`gcc -dumpversion`
+    GCC_VERSION=$(gcc -dumpversion | cut -d. -f1,2)
     if [[ `gcc -v 2>&1 | sed -n 's/.*\(--with-default-libstdcxx-abi\)=\(\w*\).*/\2/p'` == "gcc4" ]]; then
       conan install ${CPP_SRC_DIR} --install-folder conan --build=missing -s compiler.version=${GCC_VERSION} -r default-conan-local -u || { echo 'conan install failed'; exit 1; }
     else

@@ -19,12 +19,13 @@
 function install_linux_deps() {
   if [[ -x "$(command -v apt)" ]]; then
     # for Ubuntu 20.04
+    echo "Ubuntu"
     sudo apt install -y wget curl ca-certificates gnupg2  \
       g++ gcc gfortran git make ccache libssl-dev zlib1g-dev zip unzip \
-      clang-format-12 clang-tidy-12 lcov libtool m4 autoconf automake python3 python3-pip \
+      clang-format clang-tidy lcov libtool m4 autoconf automake python3 python3-pip \
       pkg-config uuid-dev libaio-dev libopenblas-dev libgoogle-perftools-dev
 
-    sudo pip3 install conan==1.64.1
+    # sudo pip3 install conan==1.64.1
   elif [[ -x "$(command -v yum)" ]]; then
     # for CentOS devtoolset-11
     sudo yum install -y epel-release centos-release-scl-rh
